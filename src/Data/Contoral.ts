@@ -82,11 +82,68 @@ const DeleteData =async (req:Request , res:Response)=>{
     
    }
     
-}
+};
+
+const Odar= async(req:Request , res:Response)=>{
+    try{
+        const { product, quantity } = req.body;
+
+      
+      
+        
+        const rejat =await DataDB.odarDB(product,quantity);
+
+        res.status(200).json({
+            success:true,
+            message:' Success message confirming the bicycle has been deleted.',
+            data:rejat
+        })
+    }catch(err){
+console.log(err);
+
+    }
+};
+
+export const getProducts = async (req: Request, res: Response) => {
+    const searchTerm = req.query.searchTerm as string;
+
+    try {
+        const rejat = await DataDB.searchData(searchTerm);
+        res.status(200).json({
+            success:true,
+            message:' Success message confirming the bicycle has been deleted.',
+            data:rejat
+        })
+    } catch (error:any) {
+        console.error('Error fetching products:', error.message);
+        res.status(500).json({ error: 'Server Error' });
+    }
+};
+
+ const getRevenue = async (req: Request, res: Response) => {
+    try {
+       
+      const revenue = await DataDB.getTotalRevenue();
+      res.status(200).json({
+        success: true,
+        totalRevenue: revenue,
+      });
+    } catch (error:any) {
+      res.status(500).json({
+        message: "Error calculating total revenue",
+        success: false,
+        error: error.message,
+      });
+    }
+  };
 export const DataContolar ={
     CreateBicycle,
     fine,
     fineaData,
     UpdateData,
-    DeleteData
+    DeleteData,
+    Odar,
+    getProducts,
+    getRevenue
+  
 }

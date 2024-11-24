@@ -8,8 +8,8 @@ async function main() {
         app.listen(config.prot, () => {
             console.log(`Example app listening on port ${config.prot}`)
           })
-      }catch(err){
-console.log(err);
+      }catch(er){
+console.log(er);
 
       }
     }

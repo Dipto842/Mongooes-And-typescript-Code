@@ -1,10 +1,11 @@
-import { Schema, model, connect } from "mongoose";
+import mongoose, { Schema, model, connect } from "mongoose";
 
 export type DataCycle = {
     id:string,
-  name: string;
+  title: string;
   brand:string,
   price:number,
+  category:string,
   type:string,
   description:string,
   quantity:number,
@@ -12,5 +13,7 @@ export type DataCycle = {
   createdAt?: Date;
   updatedAt?: Date;
 };
+
+
 
 

@@ -3,10 +3,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.app = void 0;
 const express_1 = __importDefault(require("express"));
-exports.app = (0, express_1.default)();
+const cors_1 = __importDefault(require("cors"));
+const Route_1 = require("./Data/Route");
+const Route_2 = require("./Data/order/Route");
+const app = (0, express_1.default)();
 const port = 5000;
-exports.app.get('/', (req, res) => {
+app.use(express_1.default.json());
+app.use((0, cors_1.default)());
+app.use('/api/products', Route_1.DataRout);
+app.use('/api/orders', Route_2.OdarRout);
+app.get('/', (req, res) => {
     res.send('Hello World!');
 });
+exports.default = app;
